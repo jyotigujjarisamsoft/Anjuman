@@ -4,7 +4,7 @@
 import frappe
 from frappe import _
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def create_tracker_from_relocation(application_id=None):
     if not application_id:
         frappe.throw("Application ID is required")
@@ -35,7 +35,7 @@ def create_tracker_from_relocation(application_id=None):
     tracker.insert(ignore_permissions=True)
     return tracker.name
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_rafiq_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
@@ -63,7 +63,7 @@ def fetch_rafiq_remarks_history(docname):
             remarks_history += f"Added by {row.changed_by} on {row.changed_on.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
     return remarks_history
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_legal_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
@@ -91,7 +91,7 @@ def fetch_legal_remarks_history(docname):
             remarks_history += f"Added by {row.changed_by} on {row.changed_on.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
     return remarks_history
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_placement_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
@@ -120,7 +120,7 @@ def fetch_placement_remarks_history(docname):
     return remarks_history
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_business_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
@@ -149,7 +149,7 @@ def fetch_business_remarks_history(docname):
     return remarks_history
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_investor_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
@@ -178,7 +178,7 @@ def fetch_investor_remarks_history(docname):
     return remarks_history
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def fetch_accommodation_remarks_history(docname):
     history = frappe.db.sql("""
         SELECT
